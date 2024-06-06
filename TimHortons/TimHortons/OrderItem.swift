@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//creating a new order object using this template
 class OrderItem: NSObject {
   var text = ""
   var checked = false
