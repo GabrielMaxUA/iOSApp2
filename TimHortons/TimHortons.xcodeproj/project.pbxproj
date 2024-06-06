@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		3827923D2C11432700A0EECE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3827923C2C11432700A0EECE /* AppDelegate.swift */; };
 		3827923F2C11432700A0EECE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3827923E2C11432700A0EECE /* SceneDelegate.swift */; };
-		382792412C11432700A0EECE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382792402C11432700A0EECE /* ViewController.swift */; };
+		382792412C11432700A0EECE /* OrderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382792402C11432700A0EECE /* OrderList.swift */; };
 		382792442C11432700A0EECE /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 382792432C11432700A0EECE /* Base */; };
 		382792462C11432700A0EECE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382792452C11432700A0EECE /* Assets.xcassets */; };
 		382792492C11432700A0EECE /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 382792482C11432700A0EECE /* Base */; };
+		382792532C114C4D00A0EECE /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382792522C114C4D00A0EECE /* OrderItem.swift */; };
+		382792572C11644700A0EECE /* AddEditOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382792562C11644700A0EECE /* AddEditOrder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		382792392C11432700A0EECE /* TimHortons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimHortons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3827923C2C11432700A0EECE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3827923E2C11432700A0EECE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		382792402C11432700A0EECE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		382792402C11432700A0EECE /* OrderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderList.swift; sourceTree = "<group>"; };
 		382792432C11432700A0EECE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		382792452C11432700A0EECE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		382792482C11432700A0EECE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3827924A2C11432700A0EECE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		382792522C114C4D00A0EECE /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
+		382792562C11644700A0EECE /* AddEditOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditOrder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +62,13 @@
 			children = (
 				3827923C2C11432700A0EECE /* AppDelegate.swift */,
 				3827923E2C11432700A0EECE /* SceneDelegate.swift */,
-				382792402C11432700A0EECE /* ViewController.swift */,
+				382792402C11432700A0EECE /* OrderList.swift */,
 				382792422C11432700A0EECE /* Main.storyboard */,
 				382792452C11432700A0EECE /* Assets.xcassets */,
 				382792472C11432700A0EECE /* LaunchScreen.storyboard */,
 				3827924A2C11432700A0EECE /* Info.plist */,
+				382792522C114C4D00A0EECE /* OrderItem.swift */,
+				382792562C11644700A0EECE /* AddEditOrder.swift */,
 			);
 			path = TimHortons;
 			sourceTree = "<group>";
@@ -138,7 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				382792412C11432700A0EECE /* ViewController.swift in Sources */,
+				382792572C11644700A0EECE /* AddEditOrder.swift in Sources */,
+				382792412C11432700A0EECE /* OrderList.swift in Sources */,
+				382792532C114C4D00A0EECE /* OrderItem.swift in Sources */,
 				3827923D2C11432700A0EECE /* AppDelegate.swift in Sources */,
 				3827923F2C11432700A0EECE /* SceneDelegate.swift in Sources */,
 			);
@@ -290,12 +298,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7XZJ4BCPR6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TimHortons/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Tims;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -308,6 +318,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TimHortons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -319,12 +330,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7XZJ4BCPR6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TimHortons/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Tims;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -337,6 +350,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TimHortons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
