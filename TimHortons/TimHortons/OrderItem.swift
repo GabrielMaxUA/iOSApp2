@@ -7,7 +7,7 @@
 
 import Foundation
 //creating a new order object using this template
-class OrderItem: NSObject {
+class OrderItem: NSObject, Codable {
   var text = ""
   var checked = false
 }

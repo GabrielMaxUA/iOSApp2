@@ -15,6 +15,9 @@
 		382792492C11432700A0EECE /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 382792482C11432700A0EECE /* Base */; };
 		382792532C114C4D00A0EECE /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382792522C114C4D00A0EECE /* OrderItem.swift */; };
 		382792572C11644700A0EECE /* AddEditOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382792562C11644700A0EECE /* AddEditOrder.swift */; };
+		38B441AC2C1B9DC800DA8721 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B441AB2C1B9DC800DA8721 /* MainController.swift */; };
+		38B441AE2C1BA2B100DA8721 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B441AD2C1BA2B100DA8721 /* Name.swift */; };
+		38B441B02C1BA82B00DA8721 /* NameEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B441AF2C1BA82B00DA8721 /* NameEdit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		3827924A2C11432700A0EECE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		382792522C114C4D00A0EECE /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		382792562C11644700A0EECE /* AddEditOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditOrder.swift; sourceTree = "<group>"; };
+		38B441AB2C1B9DC800DA8721 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		38B441AD2C1BA2B100DA8721 /* Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
+		38B441AF2C1BA82B00DA8721 /* NameEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEdit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +75,9 @@
 				3827924A2C11432700A0EECE /* Info.plist */,
 				382792522C114C4D00A0EECE /* OrderItem.swift */,
 				382792562C11644700A0EECE /* AddEditOrder.swift */,
+				38B441AB2C1B9DC800DA8721 /* MainController.swift */,
+				38B441AD2C1BA2B100DA8721 /* Name.swift */,
+				38B441AF2C1BA82B00DA8721 /* NameEdit.swift */,
 			);
 			path = TimHortons;
 			sourceTree = "<group>";
@@ -144,10 +153,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38B441B02C1BA82B00DA8721 /* NameEdit.swift in Sources */,
 				382792572C11644700A0EECE /* AddEditOrder.swift in Sources */,
 				382792412C11432700A0EECE /* OrderList.swift in Sources */,
 				382792532C114C4D00A0EECE /* OrderItem.swift in Sources */,
 				3827923D2C11432700A0EECE /* AppDelegate.swift in Sources */,
+				38B441AC2C1B9DC800DA8721 /* MainController.swift in Sources */,
+				38B441AE2C1BA2B100DA8721 /* Name.swift in Sources */,
 				3827923F2C11432700A0EECE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

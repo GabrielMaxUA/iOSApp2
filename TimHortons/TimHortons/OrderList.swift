@@ -9,33 +9,17 @@ import UIKit
 
 // Main view controller for displaying and managing order items
 class TimsViewController: UITableViewController, AddOrderViewControllerDelegate {
-   
+    var order: Name!
     var items = [OrderItem]() // Array to store order items
 
     // Called when the view is loaded into memory
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.prefersLargeTitles = true // Enable large titles
-        
+
+        navigationItem.largeTitleDisplayMode = .never // Disable large titles for this view controller
+        //title = order.name
         // Create and add some initial items to the list
-        let item1 = OrderItem()
-        item1.text = "Double-Double"
-        items.append(item1)
-
-        let item2 = OrderItem()
-        item2.text = "Dark Roast"
-        item2.checked = true
-        items.append(item2)
-
-        let item3 = OrderItem()
-        item3.text = "Donut"
-        item3.checked = true
-        items.append(item3)
-
-        let item4 = OrderItem()
-        item4.text = "Wrap"
-        items.append(item4)
+        loadOrder() // Load saved orders
     }
 
     // MARK: - Table View Data Source
@@ -68,6 +52,7 @@ class TimsViewController: UITableViewController, AddOrderViewControllerDelegate 
             configureCheckmark(for: cell, with: item) // Update the checkmark
         }
         tableView.deselectRow(at: indexPath, animated: true) // Deselect the row
+        saveOrder() // Save the updated order
     }
     
     // Called when a row is to be deleted
@@ -76,6 +61,7 @@ class TimsViewController: UITableViewController, AddOrderViewControllerDelegate 
 
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic) // Delete the row from the table view
+        saveOrder() // Save the updated order
     }
 
     // Configures the checkmark for a cell
@@ -126,6 +112,7 @@ class TimsViewController: UITableViewController, AddOrderViewControllerDelegate 
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic) // Insert a new row for the item
         navigationController?.popViewController(animated: true) // Return to the previous screen
+        saveOrder() // Save the updated order
     }
 
     // Called when an item is edited
@@ -137,10 +124,52 @@ class TimsViewController: UITableViewController, AddOrderViewControllerDelegate 
             }
         }
         navigationController?.popViewController(animated: true) // Return to the previous screen
+        saveOrder() // Save the updated order
     }
     
     // Called when the user cancels adding or editing an item
     func AddOrderViewControllerDidCancel(_ controller: AddOrderViewController) {
         navigationController?.popViewController(animated: true) // Return to the previous screen
+    }
+    
+    // Returns the URL to the documents directory
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask)
+        return paths[0]
+    }
+
+    // Returns the file path for storing orders
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("Orders.plist")
+    }
+    
+    // Saves the current order to a file
+    func saveOrder() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(items)
+            try data.write(
+                to: dataFilePath(),
+                options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding item array: \(error.localizedDescription)")
+        }
+    }
+
+    // Loads the order from a file
+    func loadOrder() {
+        let path = dataFilePath()
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            do {
+                items = try decoder.decode(
+                    [OrderItem].self,
+                    from: data)
+            } catch {
+                print("Error decoding item array: \(error.localizedDescription)")
+            }
+        }
     }
 }
