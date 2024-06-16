@@ -10,7 +10,7 @@
         <!--Order List-->
         <scene sceneID="1Up-zE-VCQ">
             <objects>
-                <tableViewController id="Qi5-K5-B0O" customClass="TimsViewController" customModule="TimHortons" sceneMemberID="viewController">
+                <tableViewController id="Qi5-K5-B0O" customClass="TimsViewController" customModule="TimHortons" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fDR-69-ZWu">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -141,7 +141,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Qi5-K5-B0O" kind="relationship" relationship="rootViewController" id="9yK-SI-Ek0"/>
+                        <segue destination="BN0-Ag-VyU" kind="relationship" relationship="rootViewController" id="Mdi-WA-USA"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuZ-YF-5vc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -152,10 +152,11 @@
         <scene sceneID="Pgv-2f-Kdl">
             <objects>
                 <tableViewController id="BN0-Ag-VyU" customClass="MainController" customModule="TimHortons" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="D6V-1Y-iCW">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="D6V-1Y-iCW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="BN0-Ag-VyU" id="gSO-L5-5Y2"/>
                             <outlet property="delegate" destination="BN0-Ag-VyU" id="2FW-Qn-qjb"/>
@@ -164,24 +165,25 @@
                     <navigationItem key="navigationItem" title="Names" id="tcJ-AF-BFj">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eLB-D8-xM5">
                             <connections>
-                                <segue destination="FMt-dt-F9g" kind="show" identifier="EditName" id="UbQ-v1-1bL"/>
+                                <segue destination="FMt-dt-F9g" kind="show" identifier="AddName" id="UbQ-v1-1bL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="FMt-dt-F9g" kind="show" identifier="AddName" id="Fai-ul-kUn"/>
+                        <segue destination="FMt-dt-F9g" kind="show" identifier="EditName" id="Fai-ul-kUn"/>
+                        <segue destination="Qi5-K5-B0O" kind="show" identifier="ShowOrders" id="XF4-lM-VYX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDt-bh-7Mh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="184" y="-190"/>
         </scene>
-        <!--Add name-->
+        <!--AddName-->
         <scene sceneID="XYe-x6-MRz">
             <objects>
-                <tableViewController storyboardIdentifier="NameEdit" id="FMt-dt-F9g" customClass="NameEdit" customModule="TimHortons" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddName" id="FMt-dt-F9g" userLabel="AddName" customClass="NameEdit" customModule="TimHortons" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="MFa-0m-AlK">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -233,12 +235,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xpq-P3-iNN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="184" y="603"/>
+            <point key="canvasLocation" x="184" y="605"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Fai-ul-kUn"/>
-        <segue reference="7XZ-ju-6Ks"/>
+        <segue reference="kQr-8K-p2l"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

@@ -7,10 +7,9 @@
 
 import UIKit
 
-import UIKit
-
-class Name: NSObject {
+class Name: NSObject, Codable {
   var name = ""
+  var orders = [OrderItem]()
     
     init(name: String) {
       self.name = name
