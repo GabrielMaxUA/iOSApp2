@@ -41,13 +41,15 @@ class MainController: UITableViewController, CLLocationManagerDelegate, NameEdit
             openMapWithCoffeeShopLocation()
         @unknown default:
             fatalError("Unhandled case in location authorization status")
-            break
         }
     }
     
     // CLLocationManagerDelegate method
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAuthorization()
+        // Only handle the case where authorization has been granted
+        if manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways {
+            openMapWithCoffeeShopLocation()
+        }
     }
     
     func openMapWithCoffeeShopLocation() {
