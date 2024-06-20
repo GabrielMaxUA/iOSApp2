@@ -37,6 +37,10 @@ class AddOrderViewController: UITableViewController, UITextFieldDelegate {
             doneBarButton.isEnabled = true // Enable done button
         }
     }
+    
+    @objc func dismissKeyboard() {
+         view.endEditing(true)
+     }
 
     // Called just before the view appears on the screen
     override func viewWillAppear(_ animated: Bool) {

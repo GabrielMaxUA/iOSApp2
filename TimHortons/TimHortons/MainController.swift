@@ -6,21 +6,72 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class MainController: UITableViewController, NameEditDelegate {
-
+class MainController: UITableViewController, CLLocationManagerDelegate, NameEditDelegate {
+    
+    @IBOutlet weak var findCoffeeShopButton: UIButton!
+    
+    let locationManager = CLLocationManager()
+    let coffeeShopLocation = CLLocationCoordinate2D(latitude: 43.6900516, longitude: -79.3248001)
+    
     override func viewDidLoad() {
-      super.viewDidLoad()
-      navigationController?.navigationBar.prefersLargeTitles = true
-      tableView.register(
-        UITableViewCell.self,
-        forCellReuseIdentifier: cellIdentifier)
-      // Load data
-      loadNames()
+        super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        // Load data
+        loadNames()
+        
+        locationManager.delegate = self
     }
 
+    @IBAction func findCoffeeShopTapped(_ sender: UIButton) {
+        print("Button tapped")
+        checkLocationAuthorization()
+    }
     
-    // MARK: - List Detail View Controller Delegates
+    func checkLocationAuthorization() {
+        switch locationManager.authorizationStatus {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            showLocationDeniedAlert()
+        case .authorizedWhenInUse, .authorizedAlways:
+            openMapWithCoffeeShopLocation()
+        @unknown default:
+            fatalError("Unhandled case in location authorization status")
+            break
+        }
+    }
+    
+    // CLLocationManagerDelegate method
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAuthorization()
+    }
+    
+    func openMapWithCoffeeShopLocation() {
+        
+        let regionDistance: CLLocationDistance = 1000
+        let regionSpan = MKCoordinateRegion(center: coffeeShopLocation, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coffeeShopLocation, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "Tim Hortons"
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
+    func showLocationDeniedAlert() {
+        let alert = UIAlertController(title: "Location Access Denied", message: "Location access is required to find nearby coffee shops. Please enable location services in settings.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+        print("Location access denied alert shown")
+    }
+
+    // MARK: - Name Edit View Controller Delegates
     
     // Delegate method called when the user cancels name editing
     func nameEditDidCancel(_ controller: NameEdit) {
@@ -70,9 +121,7 @@ class MainController: UITableViewController, NameEditDelegate {
     
     // Configures and returns the cell for a given row
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: cellIdentifier,
-            for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let order = lists[indexPath.row]
         cell.textLabel!.text = order.name
         cell.accessoryType = .detailDisclosureButton
@@ -108,58 +157,48 @@ class MainController: UITableViewController, NameEditDelegate {
     
     // Called when the accessory button is tapped
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let controller = storyboard!.instantiateViewController(
-            withIdentifier: "AddName") as! NameEdit
+        let controller = storyboard!.instantiateViewController(withIdentifier: "AddName") as! NameEdit
         controller.delegate = self
 
         let name = lists[indexPath.row]
         controller.nameToEdit = name
 
-        navigationController?.pushViewController(
-            controller,
-            animated: true)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     // MARK: - Data Saving
     func documentsDirectory() -> URL {
-      let paths = FileManager.default.urls(
-        for: .documentDirectory,
-        in: .userDomainMask)
-      return paths[0]
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 
     func dataFilePath() -> URL {
-      return documentsDirectory().appendingPathComponent("Orders.plist")
+        return documentsDirectory().appendingPathComponent("Orders.plist")
     }
 
     // this method is now called saveChecklists()
     func saveNames() {
-      let encoder = PropertyListEncoder()
-      do {
-        // You encode lists instead of "items"
-        let data = try encoder.encode(lists)
-        try data.write(
-          to: dataFilePath(),
-          options: Data.WritingOptions.atomic)
-      } catch {
-        print("Error encoding list array: \(error.localizedDescription)")
-      }
+        let encoder = PropertyListEncoder()
+        do {
+            // You encode lists instead of "items"
+            let data = try encoder.encode(lists)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding list array: \(error.localizedDescription)")
+        }
     }
 
     // this method is now called loadChecklists()
     func loadNames() {
-      let path = dataFilePath()
-      if let data = try? Data(contentsOf: path) {
-        let decoder = PropertyListDecoder()
-        do {
-          // You decode to an object of [Checklist] type to lists
-          lists = try decoder.decode(
-            [Name].self,
-            from: data)
-        } catch {
-          print("Error decoding list array: \(error.localizedDescription)")
+        let path = dataFilePath()
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            do {
+                // You decode to an object of [Checklist] type to lists
+                lists = try decoder.decode([Name].self, from: data)
+            } catch {
+                print("Error decoding list array: \(error.localizedDescription)")
+            }
         }
-      }
     }
-
 }
